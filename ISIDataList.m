@@ -21,7 +21,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1413\R1413_07-10-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1413\R1413_07-10-2011';
 end
 MD(i).Notes = [];
 R1413(1)=i;
@@ -38,7 +38,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1413\R1413_07-11-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1413\R1413_07-11-2011';
 end
 MD(i).Notes = [];
 
@@ -54,7 +54,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1413\R1413_07-13-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1413\R1413_07-13-2011';
 end
 MD(i).Notes = [];
 
@@ -70,7 +70,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1413\R1413_07-14-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1413\R1413_07-14-2011';
 end
 MD(i).Notes = [];
 
@@ -87,7 +87,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1413\R1413_07-18-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1413\R1413_07-18-2011';
 end
 MD(i).Notes = [];
 
@@ -103,7 +103,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1413\R1413_07-19-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1413\R1413_07-19-2011';
 end
 MD(i).Notes = [];
 
@@ -119,7 +119,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1413\R1413_07-20-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1413\R1413_07-20-2011';
 end
 MD(i).Notes = [];
 
@@ -135,7 +135,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1413\R1413_07-21-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1413\R1413_07-21-2011';
 end
 MD(i).Notes = [];
 
@@ -154,7 +154,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1412\R1412_07-11-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1412\R1412_07-11-2011';
 end
 MD(i).Notes = [];
 
@@ -170,7 +170,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1412\R1412_07-13-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1412\R1412_07-13-2011';
 end
 MD(i).Notes = [];
 
@@ -186,7 +186,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1412\R1412_07-14-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1412\R1412_07-14-2011';
 end
 MD(i).Notes = [];
 
@@ -202,7 +202,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1412\R1412_07-19-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1412\R1412_07-19-2011';
 end
 MD(i).Notes = [];
 
@@ -218,7 +218,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1412\R1412_07-20-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1412\R1412_07-20-2011';
 end
 MD(i).Notes = [];
 
@@ -234,7 +234,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1412\R1412_07-21-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1412\R1412_07-21-2011';
 end
 MD(i).Notes = [];
 
@@ -250,7 +250,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1412\R1412_07-25-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1412\R1412_07-25-2011';
 end
 MD(i).Notes = [];
 
@@ -266,7 +266,7 @@ if (strcmp(userstr,'slaptop'))
     MD(i).RawLocation = 'C:\Users\samwi_000\Documents\MATLAB\2013BulkinClass\dataset\dataset\R1412\R1412_07-27-2011';
     MD(i).SpikeMatLocation = ' ';
 elseif strcmp(userstr,'lab')
-    MD(i).Location = ' ';
+    MD(i).Location = 'C:\Users\caslocal\Documents\SamDocs\Matlab\2013course\dataset\dataset\R1412\R1412_07-27-2011';
 end
 MD(i).Notes = [];
 

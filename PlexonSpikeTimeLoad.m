@@ -1,4 +1,4 @@
-function [OutCell,Animal,Date]=PlexonSpikeTimeLoad(session,sessLocation,saveLocation)
+function [OutCell,Animal,Date]=PlexonSpikeTimeLoad(session,sessLocation,struct,saveLocation)
 %function to handle extraction of spike times from plexon data from CMK
 %session comes in as session location (directory for session file and 
 %session file itself
@@ -13,7 +13,7 @@ end
 if any(strfind(session, 'day'))
     Animal=session(1:strfind(session,'day')-1);
     s=strsplit(session,' ');
-    Dateparts=strsplit(s{1}(strfind(s{1},'day')+3:strfind(s{1},'Spks'),'-');
+    Dateparts=strsplit(s{1}(strfind(s{1},'day')+3:strfind(s{1},'Spks'),'-'));
 else    
     s=strsplit(session,' ');
     Animal=s{1};
@@ -27,11 +27,11 @@ elseif length(Dateparts{2})==1
 elseif length(Dateparts{3})==3    
     Dateparts{3}=Dateparts{3}(1:2);
 end
-Date=[Dateparts{3} Dateparts{2} Dateparts{1}];
+Date=[Dateparts{3} Dateparts{1} Dateparts{2}];
 
 OutCell=FT;
 if exist('saveLocation','var')
-    saveName=[Animal '_' Date '_spikeTsCell.mat'];
+    saveName=[Animal '_' Date '_' struct '_spikeTsCell.mat'];
     save(fullfile(saveLocation,saveName), 'FT');
 end
 
