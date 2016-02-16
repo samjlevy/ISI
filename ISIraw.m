@@ -1,22 +1,22 @@
-function ISIraw(cellMatFolder,cellMat,isiLocation)%[ISIs]=
-load(fullfile(cellMatFolder,cellMat))
-numCells=length(cellMat);
+function ISIraw(cellMatFolder,cellMatFile,isiLocation)%[ISIs]=
+load(fullfile(cellMatFolder,cellMatFile));
+numCells=length(FT);
 
 %Finds the first spike in j after current spike in i, as long as it isn't
 %the last one used
 allISI=cell(numCells,numCells);
 cd('F:\ISI\Progressbar')
-p=ProgressBar(length(numCells)^2);
+%p=ProgressBar(length(numCells));
 parfor i=1:numCells   
-    iSpikes=cellMat{i,1};
+    iSpikes=FT{i,1};
     disp(['Working cell ' num2str(i)])
     for j=1:numCells
-        jSpikes=cellMat{j,1};
+        jSpikes=FT{j,1};
         jLast=0;
         if any(jSpikes)
         for a=1:length(iSpikes)
             iSpike=iSpikes(a);
-            if sum(jSpikes>jSpike) > 0
+            if sum(jSpikes>jLast) > 0
             jSpike=jSpikes(find(jSpikes>=iSpike,1,'first'));
             if any(jSpike) && jSpike~=jLast 
                 allISI{i,j}(a)=jSpike-iSpike;
@@ -25,10 +25,11 @@ parfor i=1:numCells
             end
         end
         end
-    p.progress();    
-    end  
+        
+    end
+%p.progress();
 end
-p.stop;
+%p.stop;
 meanISI=cellfun(@mean,allISI);
 
 %Same thing?
@@ -55,6 +56,6 @@ end
 %}
 
 %saveName=[Animal '_' Date '_ISIraw.mat'];
-saveName=cellMat(1:end-16);
+saveName=cellMatFile(1:end-16);
 save(fullfile(isiLocation,saveName));%%%%%%%%%%%%
 end

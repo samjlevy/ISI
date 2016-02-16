@@ -41,8 +41,10 @@ p.stop();
 filesToISI=dir('F:\ISI\SpikeMats\*.mat');
 isiLocation='F:\ISI\ISIraw';
 cellMatFolder='F:\ISI\SpikeMats';
+tic
 for d=1:2:length(filesToISI)%right now by 2s to finish in a reasonable amount of time
-    cellMat=filesToISI(d).name;
-    disp(['Working file ' cellMat])
-    ISIraw(cellMatFolder,cellMat,isiLocation)
+    cellMatFile=filesToISI(d).name;
+    disp(['Working file ' cellMatFile ', ' num2str((d+1)/2) '/44'])
+    ISIraw(cellMatFolder,cellMatFile,isiLocation)
 end
+toc
