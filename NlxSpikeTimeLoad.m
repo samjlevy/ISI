@@ -7,12 +7,13 @@ function [OutCell] = NlxSpikeTimeLoad(session,saveLocation)
 datapath=MD(session).RawLocation;
 
 tetrodes=dir(fullfile(datapath,'*sorted.ntt'));
-
+FT={};
 for a=1:length(tetrodes)
     [spikeTs,cn]= Nlx2MatSpike(fullfile(datapath,tetrodes(a).name),[1 0 1 0 0],0,1);
     cells=unique(cn);
     for b=2:length(cells)
-        FT{b-1,1}=spikeTs(cn==cells(b));
+        [ll,~]=size(FT);
+        FT{ll+1,1}=spikeTs(cn==cells(b));
     end
 end
 

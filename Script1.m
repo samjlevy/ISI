@@ -1,15 +1,23 @@
 %ISIscript
 
 [MD,ref]=ISIDataList
-bigFiles={};
+
 %Format data
-saveLocation='C:\Users\samwi_000\Documents\Grad School\ISIproject\SpikeMats';
+%saveLocation='C:\Users\samwi_000\Documents\Grad School\ISIproject\SpikeMats';
+saveLocation='J:\ISI\SpikeMats';
+
+%BulkinFileListLoc=' ';
+%fileList=load(fullfile(BulkinFileListLoc,'BulkinSpikeFiles.mat');
+
+%Concatenate each session into a single file, all cells on all tetrodes
 for i=1:length(MD)
     [OutCell] = NlxSpikeTimeLoad(i,saveLocation);
     MD(i).SpikeMatLocation=saveLocation;
 end
 
-CMKfileListLoc='C:\Users\samwi_000\Documents\Grad School\ISIproject';
+%Concatenate each session into a single file, all cells on all tetrodes
+%CMKfileListLoc='C:\Users\samwi_000\Documents\Grad School\ISIproject';
+CMKfileListLoc='J:\ISI\FileLists';
 fileList=load(fullfile(CMKfileListLoc,'CMKspikeFiles.mat'));
 for j=1:length(fileList.fileList)
     [OutCell,Animal,Date]=PlexonSpikeTimeLoad(fileList.fileList{j,1},fileList.fileList{j,3},saveLocation);

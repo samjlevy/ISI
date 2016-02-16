@@ -1,12 +1,12 @@
 %CMK Spike files
-dirlist={'D:\CMKdata\SpksEvs files\LEC', 'LEC';
-         'D:\CMKdata\SpksEvs files\LEC learning', 'LEC';
-         'D:\CMKdata\SpksEvs files\MEC', 'MEC';
-         'D:\CMKdata\SpksEvs files\MEC learning', 'MEC';
-         'D:\CMKdata\SpksEvs files\PRC', 'PRC'
+dirlist={'J:\CMKdata\SpksEvs files\LEC', 'LEC';
+         'J:\CMKdata\SpksEvs files\LEC learning', 'LEC';
+         'J:\CMKdata\SpksEvs files\MEC', 'MEC';
+         'J:\CMKdata\SpksEvs files\MEC learning', 'MEC';
+         'J:\CMKdata\SpksEvs files\PRC', 'PRC'
          };
      
-[r,~]=size(dirlist)
+[r,~]=size(dirlist);
 fileList={};           
 for a=1:r
     cd(dirlist{a,1});
@@ -18,3 +18,5 @@ for a=1:r
         fileList{ll+1,3}=dirlist{a,1};
     end
 end    
+saveLoc=uigetdir('Choose folder to save file');
+save(fullfile(saveLoc,'CMKspikeFiles.mat'));
