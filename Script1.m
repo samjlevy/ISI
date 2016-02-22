@@ -38,9 +38,9 @@ for j=1:length(fileList.fileList)
 end    
 p.stop();
 
-filesToISI=dir('F:\ISI\SpikeMats\*.mat');
-isiLocation='F:\ISI\ISIraw';
-cellMatFolder='F:\ISI\SpikeMats';
+filesToISI=dir('D:\ISI\SpikeMats\*.mat');
+isiLocation='D:\ISI\ISIraw';
+cellMatFolder='D:\ISI\SpikeMats';
 tic
 for d=1:2:length(filesToISI)%right now by 2s to finish in a reasonable amount of time
     cellMatFile=filesToISI(d).name;
