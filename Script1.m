@@ -37,7 +37,7 @@ for j=1:length(fileList.fileList)
     p.progress();
 end    
 p.stop();
-
+%{
 filesToISI=dir('D:\ISI\SpikeMats\*.mat');
 isiLocation='D:\ISI\ISIraw';
 cellMatFolder='D:\ISI\SpikeMats';
@@ -46,5 +46,34 @@ for d=1:2:length(filesToISI)%right now by 2s to finish in a reasonable amount of
     cellMatFile=filesToISI(d).name;
     disp(['Working file ' cellMatFile ', ' num2str((d+1)/2) '/44'])
     ISIraw(cellMatFolder,cellMatFile,isiLocation)
+end
+toc
+%}
+
+filesToISI=dir('J:\ISI\SpikeMats\*.mat');
+isiLocation='J:\ISI\ISIraw';
+cellMatFolder='J:\ISI\SpikeMats';
+tic
+%p = ProgressBar(length(filesToISI));
+for d=1:length(filesToISI)
+    cellMatFile=filesToISI(d).name;
+    disp(['Working file ' cellMatFile ', ' num2str(d) '/' num2str(length(filesToISI))])
+    [~]=ISIrawFast(cellMatFolder,cellMatFile,isiLocation);
+    %p.progress();
+end
+%p.stop();
+toc
+
+%rethreshold all ISI files to under 1sec
+isiLocation='J:\ISI\ISIraw';
+filesToThresh=dir(fullfile(isiLocation,'*.mat'));
+tic
+for s=1:length(filesToThresh)
+    if any(strfind(filesToISI(s).name,'CA1d'))==1
+        tempScale = 0.001;
+    else
+        tempScale = 1000;
+    end    
+    [~]=ISIthreshold(filesToThresh(s).name,isiLocation,tempScale, ~, 1000);
 end
 toc

@@ -1,6 +1,16 @@
-%possible ISI, no loops within pair comparisions, maybe way faster
-cd('D:\ISI\SpikeMats')
-tic
+function[allISI]=ISIrawFast(cellMatFolder,cellMatFile,isiLocation)
+%Function to compute interspike intervals. 
+%Loads cell's spike times into separate vectors, then sorts all based on
+%time. Using output sortInd (sorted=unsorted(sortInd)), then sort 'marker'
+%vector, ones for one cell, zeros for the other by same sort, then take
+%diffs to get instances where diff of cell time stamps is A-B. Since diff
+%is x(2)-x(1), etc., if B's are 1s and A's are 0s, then diff in marker
+%arrays = 1 is A timestamp precedes B.
+%
+% INPUTS - folder with spike time cell array, filename for cell array,
+% location to save file
+load(fullfile(cellMatFolder,cellMatFile));
+
 allISI=cell(length(FT),length(FT));
 for a=1:length(FT)%cellA
     cellA=FT{a};
@@ -27,10 +37,7 @@ for a=1:length(FT)%cellA
 end
 meanISI=cellfun(@mean,allISI);
 stdISI=cellfun(@std,allISI);
-toc
 
-%{
-where unsortedISI(:,2)==1 (had an A-B) keep that entry in row 1 
-                      ==0 (had cellA/B against self)
-                      ==-1 (had a B-A) could check against later trial for B
-%}
+saveName=cellMatFile(1:end-16);
+save(fullfile(isiLocation,saveName), 'allISI','meanISI','stdISI');
+end
