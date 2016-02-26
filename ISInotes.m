@@ -1,28 +1,44 @@
-%possible ISI, no loops within pair comparisions, maybe way faster
-cd('D:\ISI\SpikeMats')
-allISI=cell(length(FT),length(FT));
-for a=1:length(FT)%cellA
-    cellA=FT{a};
-    markerA=zeros(length(FT{a}),1);
-    for b=1:length(FT)%row-wisefor b=1:length(FT)
-       cellB=FT{b};
-       markerB=ones(length(FT{b}),1);
-       mixedCell=[cellA; cellB];
-       mixedMarker=[markerA; markerB];
-       [sortedCell, sortInd]=sort(mixedCell); %ties?
-       sortedMarker=mixedMarker(sortInd);
-       unsortedISI=diff(sortedCell);
-       markerDiff=diff(sortedMarker);
-       allISI{a,b}=unsortedISI(markerDiff==1);
-    end
-end
-meanISI=cellfun(@mean,allISI);
-stdISI=cellfun(@std,allISI);
 
-%{
-where unsortedISI(:,2)==1 (had an A-B) keep that entry in row 1 
-                      ==0 (had cellA/B against self)
-                      ==-1 (had a B-A) could check against later trial for B
-%}
-unsortedKeep=unsortedISI(2,:)==1;
-ISI=unsortedISI(1,unsortedKeep);
+%% for i,j vs j,i comparisons
+for a=1:5
+    for b=1:5
+        inputCell{a,b}=a+b;
+    end 
+end    
+
+[r,c]=size(inputCell);
+if r==c
+
+upperIND=triu(ones(r),1);
+linearUpIND=find(IND(:));
+lowerInd=tril(ones(r),-1);
+linearLoIND=find(IND(:));
+
+[i,j]=ind2sub([r,c],linearIND);    
+end
+
+N = size(A{1});                      %# Size of an array in A
+M = cellfun('prodofsize',B);         %# Array of sizes of elements in B
+C = mat2cell([A{cell2mat(B)}],N,M); 
+% or
+C = cellfun(@(x) {[A{x}]},B);
+
+%%
+stdMat=cell2mat(inputISIstd);
+[r,c]=size(stdMat);
+upperIND=triu(ones(r),1);
+linearUpIND=find(IND(:));
+[i,j]=ind2sub([r,c],linearIND);
+keepMat=zeros(r,c);
+for g=1:length(i)
+    sem=std(data)/sqrt(length(data))%Make callable
+    if sem(stdMat(i(g),j(g))) > sem(stdMat(j(g),i(g)))
+        keepMat(i(g),j(g))=1;
+    elseif sem(stdMat(j(g),i(g))) > sem(stdMat(i(g),j(g)))
+        keepMat(j(g),i(g))=1;
+    end
+end    
+
+
+
+

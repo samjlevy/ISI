@@ -64,9 +64,12 @@ end
 %p.stop();
 toc
 
+%% Work from here
+
 %rethreshold all ISI files to under 1sec
 isiLocation='J:\ISI\ISIraw';
 filesToThresh=dir(fullfile(isiLocation,'*.mat'));
+saveLoc='J:\ISI\ISI1MS';
 tic
 for s=1:length(filesToThresh)
     if any(strfind(filesToISI(s).name,'CA1d'))==1
@@ -74,6 +77,29 @@ for s=1:length(filesToThresh)
     else
         tempScale = 1000;
     end    
-    [~]=ISIthreshold(filesToThresh(s).name,isiLocation,tempScale, ~, 1000);
+    [~]=ISIthreshed(filesToThresh(s).name,isiLocation,saveLoc,tempScale, ~, 1000);
 end
 toc
+
+filesLoc='J:\ISI\ISIraw';
+filesToAdd=dir(fullfile(filesLoc,'*.mat'));
+tic
+for a=1:length(filesToAdd
+    disp(['Adding file ' num2str(a) '/' num2str(length(filesToAdd))])
+    thisFile=filesToAdd(a);
+    load(fullfile(filesLoc,thisFile),'ISIthresh')
+    [r,c]=size('ISIthresh');
+    if r==c
+    bothIND=triu(ones(r),1)+tril(ones(r),-1);
+    linearIND=find(bothIND(:));
+    bigData=[];
+    for g=1:length(bothIND)
+        bigData=[bigData; ISIthresh{bothIND(g)}];
+    end
+    else
+        disp(['Error: file ' thisFile.name 'doesnt have square array'])
+    end    
+end
+toc
+
+
