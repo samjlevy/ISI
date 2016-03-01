@@ -113,3 +113,7 @@ end
 toc
 
 %%
+Run raw self
+ISIsem to get compare mat
+Check distributions of sem, threshold
+Bootstrap distribution comparison
