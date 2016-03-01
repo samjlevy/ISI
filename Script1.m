@@ -64,37 +64,47 @@ end
 %p.stop();
 toc
 
-%% Work from here
+%% 
 
 %rethreshold all ISI files to under 1sec
-isiLocation='J:\ISI\ISIraw';
+isiLocation='K:\ISI\ISIraw';
 filesToThresh=dir(fullfile(isiLocation,'*.mat'));
-saveLoc='J:\ISI\ISI1MS';
+saveLoc='K:\ISI\ISIscale';
 tic
 for s=1:length(filesToThresh)
-    if any(strfind(filesToISI(s).name,'CA1d'))==1
+    disp(['Thresholding file ' num2str(s) '/' num2str(length(filesToThresh))])
+    %{
+    if any(strfind(filesToThresh(s).name,'CA1d'))==1
         tempScale = 0.001;
     else
         tempScale = 1000;
-    end    
-    [~]=ISIthreshed(filesToThresh(s).name,isiLocation,saveLoc,tempScale, ~, 1000);
+    end
+    %}
+    [~]=ISIthreshed(filesToThresh(s).name,isiLocation,saveLoc,tempScale);%, 0, 1000
 end
 toc
 
-filesLoc='J:\ISI\ISIraw';
+cd('C:\Users\IGD\Documents\GitHub\ISI')
+%% Work from here: Adding Data to one big vector for histogram
+filesLoc='K:\ISI\ISI1Kms';
 filesToAdd=dir(fullfile(filesLoc,'*.mat'));
 tic
-for a=1:length(filesToAdd
+for a=1:length(filesToAdd)
     disp(['Adding file ' num2str(a) '/' num2str(length(filesToAdd))])
-    thisFile=filesToAdd(a);
+    thisFile=filesToAdd(a).name;
     load(fullfile(filesLoc,thisFile),'ISIthresh')
-    [r,c]=size('ISIthresh');
+    [r,c]=size(ISIthresh);
     if r==c
-    bothIND=triu(ones(r),1)+tril(ones(r),-1);
-    linearIND=find(bothIND(:));
-    bigData=[];
-    for g=1:length(bothIND)
-        bigData=[bigData; ISIthresh{bothIND(g)}];
+    %bothIND=triu(ones(r),1)+tril(ones(r),-1);
+    upIND=triu(ones(r),1);
+    downIND=tril(ones(r),-1);
+    linearUpIND=find(upIND(:));
+    linearDownIND=find(downIND(:));
+    bigDataUp=[];
+    bigDataLo=[];
+    for g=1:length(upIND)
+        bigDataUp=[bigDataUp; ISIthresh{linearUpIND(g)}];
+        bigDataLo=[bigDataLo; ISIthresh{linearDownIND(g)}];
     end
     else
         disp(['Error: file ' thisFile.name 'doesnt have square array'])
@@ -102,4 +112,4 @@ for a=1:length(filesToAdd
 end
 toc
 
-
+%%
