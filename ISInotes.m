@@ -20,7 +20,6 @@ linearUpIND=find(IND(:));
 [i,j]=ind2sub([r,c],linearIND);
 keepMat=zeros(r,c);
 for g=1:length(i)
-    
     if sem(stdMat(i(g),j(g))) > sem(stdMat(j(g),i(g)))
         keepMat(i(g),j(g))=1;
     elseif sem(stdMat(j(g),i(g))) > sem(stdMat(i(g),j(g)))
