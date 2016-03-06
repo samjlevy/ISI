@@ -91,9 +91,25 @@ for s=1:length(filesToThresh)
     [~]=ISIthreshed(filesToThresh(s).name,isiLocation,saveLoc,tempScale);%, 0, 1000
 end
 toc
-
 %% Work from here
 cd('C:\Users\samwi_000\Documents\GitHub\ISI')
+
+cellMatFolder=fullfile(currentDrive,'ISI\SpikeMats');
+filesToSelf=dir(fullfile(cellMatFolder,'\*.mat'));
+saveLocation=fullfile(currentDrive,'ISI\ISIself');
+tic
+%p = ProgressBar(length(filesToISI));
+for d=1:length(filesToSelf)
+    %cellMatFile=filesToISI(d).name;
+    disp(['Working file ' cellMatFile ', ' num2str(d) '/' num2str(length(filesToISI))])
+    [~]=ISIrawSelf(cellMatFolder,filesToISI(d).name,saveLocation);
+    %p.progress();
+end
+%p.stop();
+toc
+
+
+
 
 filesLoc=fullfile(currentDrive,'ISI\ISIraw');
 cd('C:\Users\IGD\Documents\GitHub\ISI')
@@ -125,7 +141,7 @@ end
 toc
 
 %%
-Run raw self
+
 ISIsem to get compare mat
 Check distributions of sem, threshold
 Bootstrap distribution comparison

@@ -1,4 +1,4 @@
-function[selfISI]=ISIrawSelf(cellMatFolder,cellMatFile,isiLocation)
+function[selfISI]=ISIrawSelf(cellMatFolder,cellMatFile,saveLocation)
 %ISI against self
 load(fullfile(cellMatFolder,cellMatFile));
 
@@ -15,5 +15,5 @@ meanSelfISI=cellfun(@mean,selfISI);
 stdSelfISI=cellfun(@std,selfISI);
 
 saveName=[cellMatFile(1:end-16) '_selfISI.mat'];
-save(fullfile(isiLocation,saveName), 'selfISI','meanSelfISI','stdSelfISI');
+save(fullfile(saveLocation,saveName), 'selfISI','meanSelfISI','stdSelfISI');
 end
