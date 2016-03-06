@@ -9,7 +9,7 @@ for a=1:length(FT)%cellA
     if c > r
         cellA=cellA';
     end
-    selfISI{a}=diff(cellA);
+    selfISI{a,1}=diff(cellA);
 end
 meanSelfISI=cellfun(@mean,selfISI);
 stdSelfISI=cellfun(@std,selfISI);

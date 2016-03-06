@@ -67,32 +67,28 @@ end
 toc
 
 
-
+%%
 %rethreshold all ISI files to under 1sec
-isiLocation=fullfile(currentDrive,'ISI\ISIraw');
+isiLocation=fullfile(currentDrive,'ISI\ISIself');
 filesToThresh=dir(fullfile(isiLocation,'*.mat'));
 saveLoc=fullfile(currentDrive,'ISI\ISI1MS');
-%% 
+
 
 %rethreshold all ISI files to under 1sec
-isiLocation='K:\ISI\ISIraw';
+isiLocation=fullfile(currentDrive,'ISI\ISIself';
 filesToThresh=dir(fullfile(isiLocation,'*.mat'));
-saveLoc='K:\ISI\ISIscale';
+saveLoc=fullfile(currentDrive,'ISI\ISIself\ScaleNThresh';
 tic
 for s=1:length(filesToThresh)
     disp(['Thresholding file ' num2str(s) '/' num2str(length(filesToThresh))])
-    %{
     if any(strfind(filesToThresh(s).name,'CA1d'))==1
         tempScale = 0.001;
     else
         tempScale = 1000;
     end
-    %}
     [~]=ISIthreshed(filesToThresh(s).name,isiLocation,saveLoc,tempScale);%, 0, 1000
 end
 toc
-%% Work from here
-cd('C:\Users\samwi_000\Documents\GitHub\ISI')
 
 cellMatFolder=fullfile(currentDrive,'ISI\SpikeMats');
 filesToSelf=dir(fullfile(cellMatFolder,'\*.mat'));
@@ -101,14 +97,15 @@ tic
 %p = ProgressBar(length(filesToISI));
 for d=1:length(filesToSelf)
     %cellMatFile=filesToISI(d).name;
-    disp(['Working file ' cellMatFile ', ' num2str(d) '/' num2str(length(filesToISI))])
-    [~]=ISIrawSelf(cellMatFolder,filesToISI(d).name,saveLocation);
+    disp(['Working file ' filesToSelf(d).name ', ' num2str(d) '/' num2str(length(filesToSelf))])
+    [~]=ISIrawSelf(cellMatFolder,filesToSelf(d).name,saveLocation);
     %p.progress();
 end
 %p.stop();
 toc
 
-
+%% Work from here
+cd('C:\Users\samwi_000\Documents\GitHub\ISI')
 
 
 filesLoc=fullfile(currentDrive,'ISI\ISIraw');
