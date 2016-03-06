@@ -1,13 +1,13 @@
-function [ISIthresh]=ISIthreshed(isiFile,isiLocation,saveLoc,tempScale,lowerLimit,upperLimit)
+function [ISIthresh]=ISIthreshed(isiFile,isiLocation,saveLoc,tempScale)%,lowerLimit,upperLimit
 load(fullfile(isiLocation,isiFile),'allISI')
-
+%{
+ISIthresh = cellfun(@(cellBC) cellBC*tempScale, allISI, 'UniformOutput', false);
+%}
 ISIthresh = cellfun(@(cellAB)...
-    cellAB(cellAB*tempScale<=upperLimit & cellAB*tempScale>=lowerLimit),...
-    allISI, 'UniformOutput', false);
+    cellAB(cellAB<=upperLimit & cellAB>=lowerLimit),...
+    intermediate, 'UniformOutput', false);
 
-ISIthresh = cellfun(@(cellBC) cellBC(cellBC*tempScale));
-
-saveName=[isiFile(1:end-4) 'thresh1kMS.mat'];
+saveName=[isiFile(1:end-4) 'thresh.mat'];
 save(fullfile(saveLoc,saveName),'ISIthresh')
 
 end

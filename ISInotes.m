@@ -6,17 +6,6 @@ for a=1:5
     end 
 end    
 
-[r,c]=size(inputCell);
-if r==c
-
-upperIND=triu(ones(r),1);
-linearUpIND=find(IND(:));
-lowerInd=tril(ones(r),-1);
-linearLoIND=find(IND(:));
-
-[i,j]=ind2sub([r,c],linearIND);    
-end
-
 N = size(A{1});                      %# Size of an array in A
 M = cellfun('prodofsize',B);         %# Array of sizes of elements in B
 C = mat2cell([A{cell2mat(B)}],N,M); 
@@ -31,7 +20,6 @@ linearUpIND=find(IND(:));
 [i,j]=ind2sub([r,c],linearIND);
 keepMat=zeros(r,c);
 for g=1:length(i)
-    sem=std(data)/sqrt(length(data))%Make callable
     if sem(stdMat(i(g),j(g))) > sem(stdMat(j(g),i(g)))
         keepMat(i(g),j(g))=1;
     elseif sem(stdMat(j(g),i(g))) > sem(stdMat(i(g),j(g)))
