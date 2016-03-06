@@ -1,4 +1,6 @@
 %ISIscript
+currentDrive='D:'; %laptop
+currentDrive='J:'; %Davison HP
 
 [MD,ref]=ISIDataList('lab')
 
@@ -64,12 +66,12 @@ end
 %p.stop();
 toc
 
-%% Work from here
+
 
 %rethreshold all ISI files to under 1sec
-isiLocation='J:\ISI\ISIraw';
+isiLocation=fullfile(currentDrive,'ISI\ISIraw');
 filesToThresh=dir(fullfile(isiLocation,'*.mat'));
-saveLoc='J:\ISI\ISI1MS';
+saveLoc=fullfile(currentDrive,'ISI\ISI1MS');
 tic
 for s=1:length(filesToThresh)
     if any(strfind(filesToISI(s).name,'CA1d'))==1
@@ -81,7 +83,10 @@ for s=1:length(filesToThresh)
 end
 toc
 
-filesLoc='J:\ISI\ISIraw';
+%% Work from here
+cd('C:\Users\samwi_000\Documents\GitHub\ISI')
+
+filesLoc=fullfile(currentDrive,'ISI\ISIraw');
 filesToAdd=dir(fullfile(filesLoc,'*.mat'));
 tic
 for a=1:length(filesToAdd

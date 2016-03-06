@@ -40,5 +40,9 @@ for g=1:length(i)
 end    
 
 
-
+%% Statistical comparison:
+Generate random data by getting a random number of ISIs from sorted, diffed 
+    combined vector, same number as ones in diff mat, perform stats on those
+    
+Look at ISIs from scale models that include temporal data (Marianne's? Hasselmo post-doc)
 
