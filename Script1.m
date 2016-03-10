@@ -1,6 +1,6 @@
 %ISIscript
 currentDrive='D:'; %laptop
-currentDrive='J:'; %Davison HP
+currentDrive='K:'; %Davison HP
 
 [MD,ref]=ISIDataList('lab')
 
@@ -73,11 +73,12 @@ isiLocation=fullfile(currentDrive,'ISI\ISIself');
 filesToThresh=dir(fullfile(isiLocation,'*.mat'));
 saveLoc=fullfile(currentDrive,'ISI\ISI1MS');
 
+cd('C:\Users\IGD\Documents\GitHub\ISI')
 
-%rethreshold all ISI files to under 1sec
-isiLocation=fullfile(currentDrive,'ISI\ISIself';
+%% rethreshold all ISI files to under 1sec
+isiLocation=fullfile(currentDrive,'ISI\Boot3');
 filesToThresh=dir(fullfile(isiLocation,'*.mat'));
-saveLoc=fullfile(currentDrive,'ISI\ISIself\ScaleNThresh';
+saveLoc=fullfile(currentDrive,'ISI\Boot3\Thresh');
 tic
 for s=1:length(filesToThresh)
     disp(['Thresholding file ' num2str(s) '/' num2str(length(filesToThresh))])
@@ -86,10 +87,10 @@ for s=1:length(filesToThresh)
     else
         tempScale = 1000;
     end
-    [~]=ISIthreshed(filesToThresh(s).name,isiLocation,saveLoc,tempScale);%, 0, 1000
+    [~]=ISIthreshed(filesToThresh(s).name,isiLocation,saveLoc,tempScale,1000,0);
 end
 toc
-
+%% Self ISI
 cellMatFolder=fullfile(currentDrive,'ISI\SpikeMats');
 filesToSelf=dir(fullfile(cellMatFolder,'\*.mat'));
 saveLocation=fullfile(currentDrive,'ISI\ISIself');
@@ -104,41 +105,37 @@ end
 %p.stop();
 toc
 
-%% Work from here
+%% Bootstrap
+cellMatFolder=fullfile(currentDrive,'ISI\SpikeMats');
+filesToBoot=dir(fullfile(cellMatFolder,'\*mat'));
+saveLocation=fullfile(currentDrive,'ISI\Boot3');
+for d=1:length(filesToBoot)
+    %cellMatFile=filesToISI(d).name;
+    disp(['Working file ' filesToBoot(d).name ', ' num2str(d) '/' num2str(length(filesToBoot))])
+    [~]=ISIrawBootStrap(cellMatFolder,filesToBoot(d).name,saveLocation);
+    %p.progress();
+end
+
+
 cd('C:\Users\samwi_000\Documents\GitHub\ISI')
 
 
 filesLoc=fullfile(currentDrive,'ISI\ISIraw');
 cd('C:\Users\IGD\Documents\GitHub\ISI')
 %% Work from here: Adding Data to one big vector for histogram
-filesLoc='K:\ISI\ISI1Kms';
-filesToAdd=dir(fullfile(filesLoc,'*.mat'));
-tic
-for a=1:length(filesToAdd)
-    disp(['Adding file ' num2str(a) '/' num2str(length(filesToAdd))])
-    thisFile=filesToAdd(a).name;
-    load(fullfile(filesLoc,thisFile),'ISIthresh')
-    [r,c]=size(ISIthresh);
-    if r==c
-    %bothIND=triu(ones(r),1)+tril(ones(r),-1);
-    upIND=triu(ones(r),1);
-    downIND=tril(ones(r),-1);
-    linearUpIND=find(upIND(:));
-    linearDownIND=find(downIND(:));
-    bigDataUp=[];
-    bigDataLo=[];
-    for g=1:length(upIND)
-        bigDataUp=[bigDataUp; ISIthresh{linearUpIND(g)}];
-        bigDataLo=[bigDataLo; ISIthresh{linearDownIND(g)}];
-    end
-    else
-        disp(['Error: file ' thisFile.name 'doesnt have square array'])
-    end    
-end
-toc
+array of locs? and ISImatNames
 
+filesLoc=fullfile(currentDrive,'ISI\ISI1Kms');
+[ bigData ] = BigDataLoad( filesLoc,'tri','up');
+filesLoc=fullfile(currentDrive,'ISI\ISIself\Thresh');
+[ bigDataSelf ] = BigDataLoad( filesLoc,'keepMat','all');
+filesLoc=fullfile(currentDrive,'ISI\Boot\Thresh');
+[ bigDataBoot1 ] = BigDataLoad( filesLoc,'tri','up');
+filesLoc=fullfile(currentDrive,'ISI\Boot2\Thresh');
+[ bigDataBoot2 ] = BigDataLoad( filesLoc,'tri','up');
+filesLoc=fullfile(currentDrive,'ISI\Boot3\Thresh');
+[ bigDataBoot3 ] = BigDataLoad( filesLoc,'tri','up');
 %%
 
 ISIsem to get compare mat
-Check distributions of sem, threshold
-Bootstrap distribution comparison
+Check distributions of sem, bootstrap, check Bulkin data isn't throwing it off

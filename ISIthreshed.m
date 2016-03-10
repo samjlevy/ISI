@@ -1,8 +1,8 @@
-function [ISIthresh]=ISIthreshed(isiFile,isiLocation,saveLoc,tempScale)%,lowerLimit,upperLimit
-load(fullfile(isiLocation,isiFile),'allISI')
-%{
-ISIthresh = cellfun(@(cellBC) cellBC*tempScale, allISI, 'UniformOutput', false);
-%}
+function [ISIthresh]=ISIthreshed(isiFile,isiLocation,saveLoc,tempScale,upperLimit,lowerLimit)%,lowerLimit,upperLimit
+load(fullfile(isiLocation,isiFile),'allISI');
+
+intermediate = cellfun(@(cellBC) cellBC*tempScale, allISI, 'UniformOutput', false);
+
 ISIthresh = cellfun(@(cellAB)...
     cellAB(cellAB<=upperLimit & cellAB>=lowerLimit),...
     intermediate, 'UniformOutput', false);

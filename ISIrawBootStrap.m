@@ -24,7 +24,9 @@ for a=1:length(FT)%cellA
         sortedMarker=mixedMarker(sortInd);
         cellDiff=diff(sortedCell);
         markerDiff=diff(sortedMarker);
-        allISI{a,b}=cellDiff(markerDiff==1);
+        howMany=sum(markerDiff==1);
+        randInd=randperm(length(cellDiff));
+        allISI{a,b}=cellDiff(randInd(1:howMany));
     end
 end
 meanISI=cellfun(@mean,allISI);
